@@ -20,7 +20,12 @@ def predict_seq2seq(phrase_ser, model):
     write_seq2seq_data('tmp',phrase_ser)
     fpred = 'tmp.phrase.pred'
     os.system('rm %s' % fpred)
-    os.system("./infer.sh tmp.phrase %s" % model)
+    infer_path = os.path.join(os.path.dirname(__file__),'infer.sh')
+    cmd = '%s tmp.phrase %s' % (infer_path, model)
+    print('Starting:\n%s' % cmd)
+    ret = os.system(cmd)
+    if not os.WIFEXITED(ret) or os.WEXITSTATUS(ret)!=0:
+        raise Exception('seq2seq inference script failed. Look at infer.sh.log for details.')
     if not os.path.exists(fpred):
         raise FileNotFoundError('File %s was not created by seq2seq prediction script. Look at infer.sh.log for details.' % fpred)
     with codecs.open(fpred, 'r', encoding='utf-8') as inp:
