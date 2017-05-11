@@ -9,7 +9,7 @@ python -m bin.infer \
     - class: DecodeText" \
   --model_dir $MODEL_DIR \
   --checkpoint_path $CHECKPOINT \
-  --input_pipeline $"
+  --input_pipeline "
     class: ParallelTextInputPipeline
     params:
       source_files:
