@@ -1,11 +1,25 @@
 # transcribe
 
 ## Requirements
-  * Python3
-  * Tensorflow version 1.1
-  * Seq2seq: https://google.github.io/seq2seq/getting_started/
-  * Pandas
-  
+ * Python3
+ * Tensorflow version 1.1
+ * Seq2seq: https://google.github.io/seq2seq/getting_started/
+ * Pandas
+
+If you use Anaconda, all dependencies can be installed into separate Anaconda environment:
+  ```bash
+  conda create -n python36_tf11 python=3.6
+  source activate python36_tf11
+  export Q=https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.1.0-py3-none-any.whl
+  pip install --ignore-installed --upgrade $Q
+  conda install pandas
+  
+  git clone https://github.com/google/seq2seq.git
+  cd seq2seq
+  pip install -e .
+  ```
+
+
 ## Usage
 
 To transcribe phrases in test_in1.txt using default model run
